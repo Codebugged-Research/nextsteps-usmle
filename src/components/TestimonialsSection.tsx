@@ -1,26 +1,33 @@
+import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Play } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const videoTestimonials = [
   {
-    name: "Dr. Niyati Shah",
-    institution: "Petre Shotadze Tbilisi Medical Academy, Georgia",
-    thumbnail: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=300&fit=crop",
+    title: "Student Success Story 1",
+    embedId: "BJGA_phgISs",
+    si: "q_L93LNiTvW3-t4U"
   },
   {
-    name: "Greeshma Mathyari",
-    institution: "Odessa National Medical University, Ukraine",
-    thumbnail: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=300&fit=crop",
+    title: "Student Success Story 2",
+    embedId: "6gA38wtatrw",
+    si: "0y2WvyLwgcPqFlnj"
   },
   {
-    name: "Justin Jose",
-    institution: "West China School of Medicine, China",
-    thumbnail: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=300&fit=crop",
+    title: "Student Success Story 3",
+    embedId: "tCCXM9AzQ3k",
+    si: "s8KakjlC93KfwVKN"
   },
   {
-    name: "Rahitya Manchineela",
-    institution: "Fathima Institute of Medical Sciences, Kadapa",
-    thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+    title: "Student Success Story 4",
+    embedId: "9st_BQhTgcc",
+    si: "dVhv5KTTF73L_yPw"
+  },
+  {
+    title: "Student Success Story 5",
+    embedId: "QCrBPJzimVY",
+    si: "ckga-k2mJZJ1AKVv"
   },
 ];
 
@@ -52,84 +59,157 @@ const writtenTestimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const videoScrollRef = useRef<HTMLDivElement>(null);
+  const textScrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = direction === 'left' ? -400 : 400;
+      ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="testimonials" className="py-20 bg-muted/30">
+    <section id="testimonials" className="py-20 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">Testimonials</span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-            What They Say About <span className="gradient-text">Next Steps</span>
+            Success Stories from <span className="gradient-text">Next Steps</span> Students
           </h2>
           <p className="text-muted-foreground text-lg">
-            Hear from our students who have successfully navigated their USMLE journey with us.
+            Hear directly from our students who have mastered the USMLE with our guidance and support.
           </p>
         </div>
 
-        {/* Video Testimonials - Horizontal Scroll */}
-        <div className="mb-12">
-          <h3 className="text-xl font-semibold text-foreground mb-4">Video Testimonials</h3>
-          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-            {videoTestimonials.map((video, index) => (
-              <div 
-                key={index}
-                className="flex-shrink-0 w-72 group cursor-pointer"
+        {/* Video Testimonials - Horizontal Scroll with Buttons */}
+        <div className="mb-24 relative group">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-bold text-foreground border-l-4 border-primary pl-4">
+              Video Testimonials
+            </h3>
+            <div className="hidden md:flex gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => scroll(videoScrollRef, 'left')}
+                className="rounded-full hover:bg-primary hover:text-white transition-all shadow-sm"
               >
-                <div className="relative rounded-xl overflow-hidden mb-3">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.name}
-                    className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
-                    <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                      <Play className="w-6 h-6 text-primary-foreground ml-1" />
-                    </div>
-                  </div>
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => scroll(videoScrollRef, 'right')}
+                className="rounded-full hover:bg-primary hover:text-white transition-all shadow-sm"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+
+          <div
+            ref={videoScrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 scrollbar-none scrollbar-hide snap-x h-full"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {videoTestimonials.map((video, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-[300px] md:w-[500px] snap-start group rounded-2xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-hover transition-all duration-300"
+              >
+                <div className="aspect-video relative">
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${video.embedId}?si=${video.si}`}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <p className="font-semibold text-foreground text-sm">{video.name}</p>
-                <p className="text-xs text-muted-foreground">{video.institution}</p>
               </div>
             ))}
           </div>
-          <p className="text-sm text-muted-foreground mt-2">← Scroll to see more</p>
+
+          {/* Mobile indicator */}
+          <p className="text-xs text-muted-foreground mt-4 md:hidden text-center opacity-60">
+            Swipe to see more stories
+          </p>
         </div>
 
-        {/* Written Testimonials - Horizontal Scroll */}
-        <div>
-          <h3 className="text-xl font-semibold text-foreground mb-4">Written Testimonials</h3>
-          <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-            {writtenTestimonials.map((testimonial, index) => (
-              <Card 
-                key={index} 
-                className="flex-shrink-0 w-80 bg-card border-border hover:shadow-card transition-all duration-300"
+        {/* Written Testimonials - Horizontal Scroll with Buttons */}
+        <div className="relative">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-bold text-foreground border-l-4 border-secondary pl-4">
+              Student Experiences
+            </h3>
+            <div className="hidden md:flex gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => scroll(textScrollRef, 'left')}
+                className="rounded-full hover:bg-secondary hover:text-white transition-all shadow-sm"
               >
-                <CardContent className="p-6">
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => scroll(textScrollRef, 'right')}
+                className="rounded-full hover:bg-secondary hover:text-white transition-all shadow-sm"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+
+          <div
+            ref={textScrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 scrollbar-none scrollbar-hide snap-x"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {writtenTestimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="flex-shrink-0 w-[300px] md:w-[400px] snap-start bg-card border-border hover:shadow-card transition-all duration-300 rounded-2xl"
+              >
+                <CardContent className="p-8">
                   {/* Stars */}
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-1 mb-5">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-500 fill-yellow-500" : "text-muted"}`} 
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-500 fill-yellow-500" : "text-muted opacity-30"}`}
                       />
                     ))}
                   </div>
-                  
+
                   {/* Quote */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+                  <p className="text-muted-foreground mb-8 leading-relaxed italic">
                     "{testimonial.text}"
                   </p>
-                  
+
                   {/* Author */}
-                  <div className="border-t border-border pt-4">
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.institution}</p>
+                  <div className="border-t border-border pt-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground">{testimonial.name}</p>
+                      <p className="text-xs text-muted-foreground">{testimonial.institution}</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <p className="text-sm text-muted-foreground mt-2">← Scroll to see more</p>
+          {/* Mobile indicator */}
+          <p className="text-xs text-muted-foreground mt-4 md:hidden text-center opacity-60">
+            Swipe to read more
+          </p>
         </div>
       </div>
     </section>

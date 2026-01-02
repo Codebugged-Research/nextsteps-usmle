@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  FileText, 
-  BookMarked, 
-  Globe2, 
+import {
+  FileText,
+  BookMarked,
+  Globe2,
   Award,
   Briefcase,
   Monitor,
@@ -106,9 +106,11 @@ const CVBuildingSection = () => {
                   </div>
                 ))}
               </div>
-              <Button className="w-full mt-6">
-                Explore CV Portal
-              </Button>
+              <a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer">
+                <Button className="w-full mt-6">
+                  Explore CV Portal
+                </Button>
+              </a>
             </CardContent>
           </Card>
         </div>

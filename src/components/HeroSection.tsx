@@ -1,13 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { GraduationCap, FileText, Stethoscope, ChevronDown } from "lucide-react";
+import { GraduationCap, FileText, Stethoscope } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const HeroSection = () => {
   return (
@@ -39,50 +32,26 @@ const HeroSection = () => {
             structured modules, and proven methodology.
           </p>
 
-          {/* Get Started Button with Options */}
-          <div className="animate-fade-up blur-in" style={{ animationDelay: "0.3s" }}>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="lg" className="px-10 py-7 text-lg gap-2 shadow-soft hover:shadow-hover transition-all">
-                  Get Started
-                  <ChevronDown className="w-5 h-5" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold text-center mb-6">Choose Your Portal</DialogTitle>
-                </DialogHeader>
-                <div className="grid gap-4">
-                  <Link to="/auth/step1" className="w-full">
-                    <Button variant="outline" className="w-full h-16 justify-between gap-4 text-left hover:border-primary hover:bg-primary/5 transition-all text-lg font-semibold px-6">
-                      <div className="flex items-center gap-4">
-                        <GraduationCap className="w-6 h-6 text-primary" />
-                        <span>Step 1 Portal</span>
-                      </div>
-                      <span className="text-muted-foreground text-sm font-normal">Start Preparation</span>
-                    </Button>
-                  </Link>
-                  <Link to="/auth/step2" className="w-full">
-                    <Button variant="outline" className="w-full h-16 justify-between gap-4 text-left hover:border-secondary hover:bg-secondary/5 transition-all text-lg font-semibold px-6">
-                      <div className="flex items-center gap-4">
-                        <Stethoscope className="w-6 h-6 text-secondary" />
-                        <span>Step 2 CK Portal</span>
-                      </div>
-                      <span className="text-muted-foreground text-sm font-normal">Join CK Course</span>
-                    </Button>
-                  </Link>
-                  <Link to="/auth/cv" className="w-full">
-                    <Button variant="outline" className="w-full h-16 justify-between gap-4 text-left hover:border-accent hover:bg-accent/5 transition-all text-lg font-semibold px-6">
-                      <div className="flex items-center gap-4">
-                        <FileText className="w-6 h-6 text-accent-foreground" />
-                        <span>CV Portal</span>
-                      </div>
-                      <span className="text-muted-foreground text-sm font-normal">Build Your CV</span>
-                    </Button>
-                  </Link>
-                </div>
-              </DialogContent>
-            </Dialog>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            <Link to="/auth/step1">
+              <Button size="lg" className="h-14 px-8 gap-2 bg-[#179BAE] hover:bg-[#179BAE]/90 text-white shadow-soft hover:shadow-hover border-none">
+                <GraduationCap className="w-5 h-5" />
+                Step 1 Portal
+              </Button>
+            </Link>
+            <Link to="/auth/step2">
+              <Button size="lg" className="h-14 px-8 gap-2 bg-[#11A8D4] hover:bg-[#11A8D4]/90 text-white shadow-soft hover:shadow-hover border-none">
+                <Stethoscope className="w-5 h-5" />
+                Step 2 CK Portal
+              </Button>
+            </Link>
+            <a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="h-14 px-8 gap-2 bg-white hover:bg-muted text-foreground border-border shadow-soft hover:shadow-hover">
+                <FileText className="w-5 h-5" />
+                USMLE CV Portal
+              </Button>
+            </a>
           </div>
 
           {/* Stats */}

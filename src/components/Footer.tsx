@@ -1,4 +1,4 @@
-import { Mail, Phone, Globe, Instagram, Facebook, Twitter } from "lucide-react";
+import { Mail, Phone, Globe, Linkedin, Facebook, X, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -8,11 +8,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex flex-col mb-4">
-              <span className="text-2xl font-bold tracking-tight">
-                NEXT <span className="text-primary">STEPS</span>
-              </span>
-              <span className="text-xs text-primary-foreground/60">USMLE</span>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/logo.png" alt="Next Steps Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+              <span className="text-2xl font-extrabold tracking-tighter text-primary">USMLE</span>
             </div>
             <p className="text-primary-foreground/70 text-sm">
               Most Comprehensive USMLE Preparation Program
@@ -36,7 +34,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li><Link to="/auth/step1" className="hover:text-primary transition-colors">Step 1 Portal</Link></li>
               <li><Link to="/auth/step2" className="hover:text-primary transition-colors">Step 2 CK Portal</Link></li>
-              <li><Link to="/auth/cv" className="hover:text-primary transition-colors">USMLE CV Portal</Link></li>
+              <li><a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">USMLE CV Portal</a></li>
             </ul>
           </div>
 
@@ -77,16 +75,16 @@ const Footer = () => {
             <span className="text-sm text-primary-foreground/60 font-medium">Follow us @nextstepsusmle</span>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com/nextstepsusmle"
+                href="https://www.linkedin.com/company/next-steps-usmle/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label="Follow us on Instagram"
+                aria-label="Follow us on LinkedIn"
               >
-                <Instagram className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://facebook.com/nextstepsusmle"
+                href="https://www.facebook.com/nextstepsUSMLE/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
@@ -95,13 +93,22 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com/nextstepsusmle"
+                href="https://x.com/NextStepsUSMLE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label="Follow us on X (Twitter)"
+                aria-label="Follow us on X"
               >
-                <Twitter className="w-5 h-5" />
+                <X className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@nextstepsusmle/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                aria-label="Follow us on YouTube"
+              >
+                <Youtube className="w-5 h-5" />
               </a>
             </div>
           </div>

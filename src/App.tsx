@@ -12,6 +12,14 @@ import USMLECv from "./pages/USMLECv";
 import ClinicalRotations from "./pages/ClinicalRotations";
 import ResidencyMatch from "./pages/ResidencyMatch";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+
+const RedirectToCV = () => {
+  useEffect(() => {
+    window.location.href = "https://cv.nextstepsusmle.com/";
+  }, []);
+  return null;
+};
 
 const App = () => (
   <TooltipProvider>
@@ -24,7 +32,7 @@ const App = () => (
         <Route path="/payment" element={<Payment />} />
         <Route path="/auth/step1" element={<AuthStep1 />} />
         <Route path="/auth/step2" element={<AuthStep2 />} />
-        <Route path="/auth/cv" element={<AuthCV />} />
+        <Route path="/auth/cv" element={<RedirectToCV />} />
         <Route path="/programs/usmle-cv" element={<USMLECv />} />
         <Route path="/programs/clinical-rotations" element={<ClinicalRotations />} />
         <Route path="/programs/residency-match" element={<ResidencyMatch />} />

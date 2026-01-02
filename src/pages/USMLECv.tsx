@@ -60,11 +60,11 @@ const USMLECv = () => {
 
           <div className="max-w-4xl mx-auto">
             <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Link to="/auth/cv">
+              <a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer">
                 <Button size="lg">
                   Get Started with CV Building
                 </Button>
-              </Link>
+              </a>
               <Button
                 size="lg"
                 variant="outline"
