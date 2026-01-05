@@ -90,7 +90,7 @@ const Navbar = () => {
                   <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Student Portals</p>
                 </div>
                 <ul className="py-2">
-                  {programsLinks.map((item, index) => (
+                  {portalLinks.map((item, index) => (
                     <li key={index}>
                       <Link
                         to={item.href}
