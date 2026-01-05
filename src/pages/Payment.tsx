@@ -203,7 +203,6 @@ const Payment = () => {
                           <SelectItem value="enrollment">Enrollment Fee</SelectItem>
                           <SelectItem value="installment">Installment Payment</SelectItem>
                           <SelectItem value="full">Full Course Payment</SelectItem>
-                          <SelectItem value="material">Study Materials</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
