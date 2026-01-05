@@ -15,10 +15,9 @@ const Payment = () => {
     name: "",
     email: "",
     phone: "",
-    amount: "",
+    country: "",
     paymentType: "",
     studentId: "",
-    notes: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -26,14 +25,14 @@ const Payment = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, paymentType: value }));
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.amount || !formData.paymentType) {
+
+    if (!formData.name || !formData.email || !formData.paymentType || !formData.country) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -42,35 +41,24 @@ const Payment = () => {
       return;
     }
 
-    const amount = parseFloat(formData.amount);
-    if (isNaN(amount) || amount <= 0) {
-      toast({
-        title: "Invalid Amount",
-        description: "Please enter a valid payment amount.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
-    
-    // Simulate payment processing
+
+    // Simulate processing
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    
+
     toast({
-      title: "Payment Submitted",
-      description: `Your payment of $${amount.toFixed(2)} has been submitted successfully. Our team will process it shortly.`,
+      title: "Information Submitted",
+      description: `Thank you, ${formData.name}. Our team will contact you shortly with the payment details for your region.`,
     });
-    
+
     setIsSubmitting(false);
     setFormData({
       name: "",
       email: "",
       phone: "",
-      amount: "",
+      country: "",
       paymentType: "",
       studentId: "",
-      notes: "",
     });
   };
 
@@ -101,16 +89,16 @@ const Payment = () => {
               Make a Payment
             </h1>
             <p className="text-lg text-muted-foreground max-w-md mx-auto">
-              Pay your enrollment fee or installment securely. Enter the amount communicated by your enrollment advisor.
+              Please provide your details below. Our team will contact you with the specific enrollment and payment information tailored to your region.
             </p>
           </div>
 
           {/* Payment Form Card */}
           <Card className="shadow-card border-border/50">
             <CardHeader className="pb-6">
-              <CardTitle className="text-xl">Payment Details</CardTitle>
+              <CardTitle className="text-xl">Student Details</CardTitle>
               <CardDescription>
-                Fill in your details and the payment amount below
+                Fill in your details below to proceed
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -120,7 +108,7 @@ const Payment = () => {
                   <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                     Personal Information
                   </h3>
-                  
+
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="flex items-center gap-2">
@@ -130,13 +118,12 @@ const Payment = () => {
                       <Input
                         id="name"
                         name="name"
-                        placeholder="John Doe"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="email" className="flex items-center gap-2">
                         <Mail className="h-4 w-4 text-muted-foreground" />
@@ -146,7 +133,6 @@ const Payment = () => {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
                         value={formData.email}
                         onChange={handleInputChange}
                         required
@@ -164,12 +150,11 @@ const Payment = () => {
                         id="phone"
                         name="phone"
                         type="tel"
-                        placeholder="+1 (555) 000-0000"
                         value={formData.phone}
                         onChange={handleInputChange}
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="studentId" className="flex items-center gap-2">
                         <FileText className="h-4 w-4 text-muted-foreground" />
@@ -178,7 +163,6 @@ const Payment = () => {
                       <Input
                         id="studentId"
                         name="studentId"
-                        placeholder="STU-12345"
                         value={formData.studentId}
                         onChange={handleInputChange}
                       />
@@ -186,18 +170,18 @@ const Payment = () => {
                   </div>
                 </div>
 
-                {/* Payment Information */}
+                {/* Course & Region Information */}
                 <div className="space-y-4 pt-4 border-t">
                   <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                    Payment Information
+                    Course & Region
                   </h3>
-                  
+
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="paymentType">Payment Type *</Label>
-                      <Select value={formData.paymentType} onValueChange={handleSelectChange}>
+                      <Label htmlFor="paymentType">Payment For *</Label>
+                      <Select value={formData.paymentType} onValueChange={(v) => handleSelectChange('paymentType', v)}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select payment type" />
+                          <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="enrollment">Enrollment Fee</SelectItem>
@@ -207,55 +191,21 @@ const Payment = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="amount" className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4 text-muted-foreground" />
-                        Amount (USD) *
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
-                          $
-                        </span>
-                        <Input
-                          id="amount"
-                          name="amount"
-                          type="number"
-                          min="1"
-                          step="0.01"
-                          placeholder="0.00"
-                          className="pl-8"
-                          value={formData.amount}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="notes">Additional Notes</Label>
-                    <Input
-                      id="notes"
-                      name="notes"
-                      placeholder="Any additional information (e.g., invoice number, program name)"
-                      value={formData.notes}
-                      onChange={handleInputChange}
-                    />
+                    <div className="space-y-2">
+                      <Label htmlFor="country">Country *</Label>
+                      <Select value={formData.country} onValueChange={(v) => handleSelectChange('country', v)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="india">India</SelectItem>
+                          <SelectItem value="others">Others</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                 </div>
-
-                {/* Amount Summary */}
-                {formData.amount && parseFloat(formData.amount) > 0 && (
-                  <div className="bg-muted/50 rounded-lg p-4 border">
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Payment Amount</span>
-                      <span className="text-2xl font-bold text-primary">
-                        ${parseFloat(formData.amount).toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                )}
 
                 {/* Submit Button */}
                 <Button
@@ -272,13 +222,13 @@ const Payment = () => {
                   ) : (
                     <>
                       <CreditCard className="h-5 w-5 mr-2" />
-                      Proceed to Payment
+                      Proceed to Details
                     </>
                   )}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">
-                  By proceeding, you agree to our payment terms. For any queries, contact your enrollment advisor.
+                  Our team will follow up with the specific payment gateway Link for your chosen region.
                 </p>
               </form>
             </CardContent>
@@ -288,8 +238,8 @@ const Payment = () => {
           <div className="mt-8 text-center">
             <p className="text-muted-foreground">
               Need help? Contact us at{" "}
-              <a href="mailto:payments@usmleprep.com" className="text-primary hover:underline">
-                payments@usmleprep.com
+              <a href="mailto:admin@nextstepsusmle.com" className="text-primary hover:underline">
+                admin@nextstepsusmle.com
               </a>
             </p>
           </div>
