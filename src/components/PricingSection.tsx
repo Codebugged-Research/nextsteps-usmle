@@ -70,7 +70,8 @@ const PricingSection = () => {
                     <span className="text-primary font-bold">•</span>
                     <span>Get <strong>free access</strong> to our exclusive <strong>USMLE DISSECTION SERIES HANDBOOK</strong></span>
                     <a
-                      href="#"
+                      href="/Next_Steps Brochure_New 2026.pdf"
+                      download
                       className="inline-flex items-center gap-1 ml-2 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-sm font-medium transition-colors"
                     >
                       <FileDown className="w-4 h-4" />
