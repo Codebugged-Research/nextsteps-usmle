@@ -32,8 +32,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Student Portals</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><Link to="/auth/step1" className="hover:text-primary transition-colors">Step 1 Portal</Link></li>
-              <li><Link to="/auth/step2" className="hover:text-primary transition-colors">Step 2 CK Portal</Link></li>
+              <li><a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Step 1 Portal</a></li>
+              <li><a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Step 2 CK Portal</a></li>
               <li><a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">USMLE CV Portal</a></li>
             </ul>
           </div>

@@ -10,8 +10,8 @@ const programsLinks = [
 ];
 
 const portalLinks = [
-  { title: "Step 1 Portal", href: "/auth/step1" },
-  { title: "Step 2 CK Portal", href: "/auth/step2" },
+  { title: "Step 1 Portal", href: "https://app.nextstepscareer.com/login" },
+  { title: "Step 2 CK Portal", href: "https://app.nextstepscareer.com/login" },
   { title: "CV Portal", href: "https://cv.nextstepsusmle.com/" },
 ];
 
@@ -92,12 +92,23 @@ const Navbar = () => {
                 <ul className="py-2">
                   {portalLinks.map((item, index) => (
                     <li key={index}>
-                      <Link
-                        to={item.href}
-                        className="block px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors font-medium border-l-2 border-transparent hover:border-primary"
-                      >
-                        {item.title}
-                      </Link>
+                      {item.href.startsWith('http') ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors font-medium border-l-2 border-transparent hover:border-primary"
+                        >
+                          {item.title}
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors font-medium border-l-2 border-transparent hover:border-primary"
+                        >
+                          {item.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
