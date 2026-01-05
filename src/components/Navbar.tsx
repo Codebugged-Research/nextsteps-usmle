@@ -31,9 +31,9 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#step1-2ck" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/#step1-2ck" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Step 1 & 2 CK
-            </a>
+            </Link>
 
             {/* USMLE Programs Dropdown */}
             <div className="relative">
@@ -64,9 +64,9 @@ const Navbar = () => {
               </button>
             </div>
 
-            <a href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Testimonials
-            </a>
+            </Link>
             <Link to="/payment" className="text-sm font-medium text-green-600 hover:text-green-700 transition-colors">
               Pay Fee
             </Link>
@@ -87,7 +87,7 @@ const Navbar = () => {
 
               <div className="absolute top-full right-0 mt-2 w-64 bg-background border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
                 <div className="p-4 bg-muted/30 border-b border-border">
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Training & Mentorship</p>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Student Portals</p>
                 </div>
                 <ul className="py-2">
                   {programsLinks.map((item, index) => (
@@ -98,32 +98,6 @@ const Navbar = () => {
                       >
                         {item.title}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-                <div className="p-4 bg-muted/30 border-y border-border">
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Student Portals</p>
-                </div>
-                <ul className="py-2">
-                  {portalLinks.map((item, index) => (
-                    <li key={index}>
-                      {item.href.startsWith('http') ? (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors font-medium border-l-2 border-transparent hover:border-primary"
-                        >
-                          {item.title}
-                        </a>
-                      ) : (
-                        <Link
-                          to={item.href}
-                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors font-medium border-l-2 border-transparent hover:border-primary"
-                        >
-                          {item.title}
-                        </Link>
-                      )}
                     </li>
                   ))}
                 </ul>
@@ -145,12 +119,12 @@ const Navbar = () => {
           <div className="md:hidden py-6 border-t border-border animate-fade-in bg-background">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-3 px-2">
-                <a href="#step1-2ck" onClick={() => setIsMenuOpen(false)} className="text-base font-semibold text-foreground">
+                <Link to="/#step1-2ck" onClick={() => setIsMenuOpen(false)} className="text-base font-semibold text-foreground">
                   Step 1 & 2 CK
-                </a>
-                <a href="#testimonials" onClick={() => setIsMenuOpen(false)} className="text-base font-semibold text-foreground">
+                </Link>
+                <Link to="/#testimonials" onClick={() => setIsMenuOpen(false)} className="text-base font-semibold text-foreground">
                   Testimonials
-                </a>
+                </Link>
                 <Link to="/payment" onClick={() => setIsMenuOpen(false)} className="text-base font-semibold text-green-600">
                   Pay Fee
                 </Link>

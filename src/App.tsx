@@ -13,6 +13,7 @@ import ClinicalRotations from "./pages/ClinicalRotations";
 import ResidencyMatch from "./pages/ResidencyMatch";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
+import ScrollToTop from "./components/ScrollToTop";
 
 const RedirectToCV = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const App = () => (
     <Toaster />
     <Sonner />
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/contact" element={<Contact />} />
