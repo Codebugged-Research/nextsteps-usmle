@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const PrivacyPolicy = () => {
     return (
@@ -113,8 +114,8 @@ const PrivacyPolicy = () => {
                             <div className="space-y-2 text-sm">
                                 <p>
                                     <strong>Email:</strong>{" "}
-                                    <a href="mailto:usmle@nextstepscareer.com" className="text-primary hover:underline">
-                                        usmle@nextstepscareer.com
+                                    <a href="mailto:admin@nextstepsusmle.com" className="text-primary hover:underline">
+                                        admin@nextstepsusmle.com
                                     </a>
                                 </p>
                                 <p>
@@ -144,6 +145,7 @@ const PrivacyPolicy = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 };

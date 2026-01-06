@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const TermsAndConditions = () => {
     return (
@@ -27,7 +28,7 @@ const TermsAndConditions = () => {
                         </p>
 
                         <p>
-                            You may contact us on <a href="mailto:usmle@nextstepscareer.com" className="text-primary hover:underline">usmle@nextstepscareer.com</a> and/or +1 214 306 6111 or local office telephone number.
+                            You may contact us on <a href="mailto:admin@nextstepsusmle.com" className="text-primary hover:underline">admin@nextstepsusmle.com</a> and/or +1 214 306 6111 or local office telephone number.
                         </p>
 
                         <p>
@@ -319,7 +320,7 @@ const TermsAndConditions = () => {
                             <strong>15.8.</strong> Next Steps may supplement the information that you provide with information we receive from third parties, such as exam registration bodies or your employer.
                         </p>
                         <p>
-                            <strong>15.9.</strong> If you wish to change or update the data we hold about you, please e-mail <a href="mailto:usmle@nextstepscareer.com" className="text-primary hover:underline">usmle@nextstepscareer.com</a> and/or +91 7619260054 or local office telephone number.
+                            <strong>15.9.</strong> If you wish to change or update the data we hold about you, please e-mail <a href="mailto:admin@nextstepsusmle.com" className="text-primary hover:underline">admin@nextstepsusmle.com</a> and/or +91 7619260054 or local office telephone number.
                         </p>
 
                         <h2 className="text-2xl font-bold mt-8 mb-4 text-foreground">16. Law and Jurisdiction</h2>
@@ -332,7 +333,7 @@ const TermsAndConditions = () => {
                             You can contact us by any of the following methods:
                         </p>
                         <ul className="list-none pl-0">
-                            <li><strong>Email:</strong> <a href="mailto:usmle@nextstepscareer.com" className="text-primary hover:underline">usmle@nextstepscareer.com</a></li>
+                            <li><strong>Email:</strong> <a href="mailto:admin@nextstepsusmle.com" className="text-primary hover:underline">admin@nextstepsusmle.com</a></li>
                             <li><strong>Post:</strong> Next Steps Career Corporation 30 N Gould St, STE R, Sheridan, WY 82801, USA</li>
                             <li><strong>Telephone:</strong> +91 7619260054</li>
                         </ul>
@@ -345,6 +346,7 @@ const TermsAndConditions = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 };
