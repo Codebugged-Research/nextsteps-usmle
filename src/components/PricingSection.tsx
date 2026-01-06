@@ -70,12 +70,12 @@ const PricingSection = () => {
                     <span className="text-primary font-bold">•</span>
                     <span>Get <strong>free access</strong> to our exclusive <strong>USMLE DISSECTION SERIES HANDBOOK</strong></span>
                     <a
-                      href="/Next_Steps Brochure_New 2026.pdf"
-                      download
+                      href="/1000_Cases_Step 1.pdf"
+                      download="1000_Cases_Step_1.pdf"
                       className="inline-flex items-center gap-1 ml-2 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-sm font-medium transition-colors"
                     >
                       <FileDown className="w-4 h-4" />
-                      Sample PDF
+                      100 Cases PDF
                     </a>
                   </li>
                 </ul>
