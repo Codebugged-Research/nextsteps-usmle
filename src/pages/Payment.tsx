@@ -18,6 +18,7 @@ const Payment = () => {
     country: "",
     paymentType: "",
     studentId: "",
+    amount: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,7 +33,7 @@ const Payment = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.paymentType || !formData.country) {
+    if (!formData.name || !formData.email || !formData.paymentType || !formData.country || !formData.amount) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -43,23 +44,66 @@ const Payment = () => {
 
     setIsSubmitting(true);
 
-    // Simulate processing
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      if (formData.country === 'india') {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    toast({
-      title: "Information Submitted",
-      description: `Thank you, ${formData.name}. Our team will contact you shortly with the payment details for your region.`,
-    });
+        toast({
+          title: "Request Received",
+          description: "Thank you! Our team will send out the payment details for India shortly.",
+        });
 
-    setIsSubmitting(false);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      country: "",
-      paymentType: "",
-      studentId: "",
-    });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          country: "",
+          paymentType: "",
+          studentId: "",
+          amount: "",
+        });
+      } else {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await fetch(`${apiUrl}/api/payments/checkout`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: parseFloat(formData.amount),
+            currency: 'usd',
+            email: formData.email,
+            metadata: {
+              name: formData.name,
+              phone: formData.phone,
+              paymentType: formData.paymentType,
+              studentId: formData.studentId,
+            },
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Payment processing failed');
+        }
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error('No checkout URL received');
+        }
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: error instanceof Error ? error.message : "Failed to process payment. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,18 +132,12 @@ const Payment = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
               Make a Payment
             </h1>
-            <p className="text-lg text-muted-foreground max-w-md mx-auto">
-              Please provide your details below. Our team will contact you with the specific enrollment and payment information tailored to your region.
-            </p>
           </div>
 
           {/* Payment Form Card */}
           <Card className="shadow-card border-border/50">
             <CardHeader className="pb-6">
-              <CardTitle className="text-xl">Student Details</CardTitle>
-              <CardDescription>
-                Fill in your details below to proceed
-              </CardDescription>
+              <CardTitle className="text-xl">Fill in your details below to proceed</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -170,11 +208,7 @@ const Payment = () => {
                   </div>
                 </div>
 
-                {/* Course & Region Information */}
                 <div className="space-y-4 pt-4 border-t">
-                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                    Course & Region
-                  </h3>
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -204,6 +238,30 @@ const Payment = () => {
                         </SelectContent>
                       </Select>
                     </div>
+
+                    {formData.country && (
+                      <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <Label htmlFor="amount" className="flex items-center gap-2">
+                          Amount ({formData.country === 'india' ? 'INR' : 'USD'}) *
+                        </Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
+                            {formData.country === 'india' ? '₹' : '$'}
+                          </span>
+                          <Input
+                            id="amount"
+                            name="amount"
+                            type="number"
+                            min="0"
+                            step="any"
+                            className="pl-8"
+                            value={formData.amount}
+                            onChange={handleInputChange}
+                            required
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -222,7 +280,7 @@ const Payment = () => {
                   ) : (
                     <>
                       <CreditCard className="h-5 w-5 mr-2" />
-                      Proceed to Details
+                      Proceed to payment
                     </>
                   )}
                 </Button>
@@ -234,7 +292,6 @@ const Payment = () => {
             </CardContent>
           </Card>
 
-          {/* Help Section */}
           <div className="mt-8 text-center">
             <p className="text-muted-foreground">
               Need help? Contact us at{" "}
