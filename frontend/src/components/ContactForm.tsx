@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
     const { toast } = useToast();
@@ -13,7 +12,6 @@ const ContactForm = () => {
         name: "",
         email: "",
         phone: "",
-        medSchool: "",
         message: ""
     });
 
@@ -22,35 +20,34 @@ const ContactForm = () => {
         setIsSubmitting(true);
 
         try {
-            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-            if (!serviceId || !templateId || !publicKey || serviceId === "your_service_id") {
-                throw new Error("EmailJS credentials not configured");
+            const response = await fetch(`${apiUrl}/api/contact/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
             }
 
-            await emailjs.send(
-                serviceId,
-                templateId,
-                {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    phone: formData.phone,
-                    med_school: formData.medSchool,
-                    message: formData.message,
-                    to_name: "Next Steps USMLE Team",
-                },
-                publicKey
-            );
-
             toast({
-                title: "Message Sent!",
+                title: "Message Sent! ✅",
                 description: "We'll get back to you as soon as possible.",
             });
-            setFormData({ name: "", email: "", phone: "", medSchool: "", message: "" });
+            setFormData({ name: "", email: "", phone: "", message: "" });
         } catch (error) {
-            console.error("Email error:", error);
+            console.error("Contact form error:", error);
             toast({
                 title: "Error Sending Message",
                 description: error instanceof Error ? error.message : "Something went wrong. Please try again later.",
@@ -98,16 +95,6 @@ const ContactForm = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+1 234 567 8900"
-                    />
-                </div>
-                <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">Med School</label>
-                    <Input
-                        name="medSchool"
-                        value={formData.medSchool}
-                        onChange={handleChange}
-                        placeholder="Your medical school"
-                        required
                     />
                 </div>
             </div>
