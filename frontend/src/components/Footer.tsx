@@ -1,4 +1,4 @@
-import { Mail, Phone, Globe, Linkedin, Facebook, X, Youtube } from "lucide-react";
+import { Mail, Phone, Globe, Linkedin, Facebook, X, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -25,6 +25,9 @@ const Footer = () => {
               <li><Link to="/#step1-2ck" className="hover:text-primary transition-colors">Step 1 & 2 CK</Link></li>
               <li><Link to="/#cv-building" className="hover:text-primary transition-colors">CV Building</Link></li>
               <li><Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><Link to="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/cancellation-policy" className="hover:text-primary transition-colors">Cancellation Policy</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -32,8 +35,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Student Portals</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Step 1 Portal</a></li>
-              <li><a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Step 2 CK Portal</a></li>
+              <li><a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Step 1/Step 2 Portal</a></li>
               <li><a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">USMLE CV Portal</a></li>
             </ul>
           </div>
@@ -102,13 +104,13 @@ const Footer = () => {
                 <X className="w-5 h-5" />
               </a>
               <a
-                href="https://www.youtube.com/@nextstepsusmle/"
+                href="https://www.instagram.com/nextstepsusmle/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label="Follow us on YouTube"
+                aria-label="Follow us on Instagram"
               >
-                <Youtube className="w-5 h-5" />
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>

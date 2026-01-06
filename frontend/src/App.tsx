@@ -13,6 +13,9 @@ import PaymentCancel from "./pages/PaymentCancel";
 import USMLECv from "./pages/USMLECv";
 import ClinicalRotations from "./pages/ClinicalRotations";
 import ResidencyMatch from "./pages/ResidencyMatch";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import CancellationPolicy from "./pages/CancellationPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop";
@@ -42,6 +45,9 @@ const App = () => (
         <Route path="/programs/usmle-cv" element={<USMLECv />} />
         <Route path="/programs/clinical-rotations" element={<ClinicalRotations />} />
         <Route path="/programs/residency-match" element={<ResidencyMatch />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

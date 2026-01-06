@@ -10,8 +10,7 @@ const programsLinks = [
 ];
 
 const portalLinks = [
-  { title: "Step 1 Portal", href: "https://app.nextstepscareer.com/login" },
-  { title: "Step 2 CK Portal", href: "https://app.nextstepscareer.com/login" },
+  { title: "Step 1/Step 2 Portal", href: "https://app.nextstepscareer.com/login" },
   { title: "CV Portal", href: "https://cv.nextstepsusmle.com/" },
 ];
 

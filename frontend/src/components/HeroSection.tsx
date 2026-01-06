@@ -32,20 +32,13 @@ const HeroSection = () => {
             structured modules, and proven methodology.
           </p>
 
-          {/* Action Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Link to="/auth/step1">
+            <a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="h-14 px-8 gap-2 bg-[#179BAE] hover:bg-[#179BAE]/90 text-white shadow-soft hover:shadow-hover border-none">
                 <GraduationCap className="w-5 h-5" />
-                Step 1 Portal
+                Step 1/Step 2 Portal
               </Button>
-            </Link>
-            <Link to="/auth/step2">
-              <Button size="lg" className="h-14 px-8 gap-2 bg-[#11A8D4] hover:bg-[#11A8D4]/90 text-white shadow-soft hover:shadow-hover border-none">
-                <Stethoscope className="w-5 h-5" />
-                Step 2 CK Portal
-              </Button>
-            </Link>
+            </a>
             <a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="h-14 px-8 gap-2 bg-white hover:bg-muted text-foreground border-border shadow-soft hover:shadow-hover">
                 <FileText className="w-5 h-5" />
