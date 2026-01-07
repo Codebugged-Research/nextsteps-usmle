@@ -203,7 +203,7 @@ export const sendCustomerConfirmation = async (paymentData) => {
  * @param {Object} contactData - Contact form details
  */
 export const sendContactFormEmail = async (contactData) => {
-    const { name, email, phone, message } = contactData;
+    const { name, email, phone, medSchool, message } = contactData;
 
     const mailOptions = {
         from: `"Next Steps USMLE Contact Form" <${process.env.EMAIL_USER}>`,
@@ -250,6 +250,12 @@ export const sendContactFormEmail = async (contactData) => {
                                 <td><a href="tel:${phone}">${phone}</a></td>
                             </tr>
                             ` : ''}
+                            ${medSchool ? `
+                            <tr>
+                                <td>Med School</td>
+                                <td>${medSchool}</td>
+                            </tr>
+                            ` : ''}
                             <tr>
                                 <td>Date & Time</td>
                                 <td>${new Date().toLocaleString('en-US', {
@@ -284,6 +290,7 @@ Contact Information:
 - Name: ${name}
 - Email: ${email}
 ${phone ? `- Phone: ${phone}` : ''}
+${medSchool ? `- Med School: ${medSchool}` : ''}
 - Date: ${new Date().toLocaleString()}
 
 Message:

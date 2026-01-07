@@ -12,6 +12,7 @@ const ContactForm = () => {
         name: "",
         email: "",
         phone: "",
+        medSchool: "",
         message: ""
     });
 
@@ -20,7 +21,7 @@ const ContactForm = () => {
         setIsSubmitting(true);
 
         try {
-            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const apiUrl = import.meta.env.VITE_API_URL;
 
             const response = await fetch(`${apiUrl}/api/contact/submit`, {
                 method: 'POST',
@@ -31,6 +32,7 @@ const ContactForm = () => {
                     name: formData.name,
                     email: formData.email,
                     phone: formData.phone,
+                    medSchool: formData.medSchool,
                     message: formData.message,
                 }),
             });
@@ -45,7 +47,7 @@ const ContactForm = () => {
                 title: "Message Sent! ✅",
                 description: "We'll get back to you as soon as possible.",
             });
-            setFormData({ name: "", email: "", phone: "", message: "" });
+            setFormData({ name: "", email: "", phone: "", medSchool: "", message: "" });
         } catch (error) {
             console.error("Contact form error:", error);
             toast({
@@ -71,7 +73,6 @@ const ContactForm = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your name"
                         required
                     />
                 </div>
@@ -82,7 +83,6 @@ const ContactForm = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="your@email.com"
                         required
                     />
                 </div>
@@ -94,7 +94,14 @@ const ContactForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+1 234 567 8900"
+                    />
+                </div>
+                <div>
+                    <label className="text-sm font-medium text-foreground mb-2 block">Med School</label>
+                    <Input
+                        name="medSchool"
+                        value={formData.medSchool}
+                        onChange={handleChange}
                     />
                 </div>
             </div>

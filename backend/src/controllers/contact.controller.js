@@ -2,7 +2,7 @@ import { sendContactFormEmail } from '../services/email.service.js';
 
 export const submitContactForm = async (req, res, next) => {
     try {
-        const { name, email, phone, message } = req.body;
+        const { name, email, phone, medSchool, message } = req.body;
 
         // Validation
         if (!name || !email || !message) {
@@ -20,7 +20,7 @@ export const submitContactForm = async (req, res, next) => {
         }
 
         // Send email
-        await sendContactFormEmail({ name, email, phone, message });
+        await sendContactFormEmail({ name, email, phone, medSchool, message });
 
         res.status(200).json({
             success: true,

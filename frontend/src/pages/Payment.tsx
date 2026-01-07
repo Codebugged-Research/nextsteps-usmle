@@ -63,7 +63,7 @@ const Payment = () => {
           amount: "",
         });
       } else {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:9000';
         const response = await fetch(`${apiUrl}/api/payments/checkout`, {
           method: 'POST',
           headers: {
