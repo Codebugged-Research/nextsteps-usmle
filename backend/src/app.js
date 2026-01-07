@@ -6,7 +6,7 @@ import { errorHandler, notFound } from './middlewares/error.middleware.js';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: process.env.CLIENT_URL,
     credentials: true,
 }));
 
