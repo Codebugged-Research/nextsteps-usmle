@@ -39,19 +39,18 @@ jobs:
             git pull origin main
             
             # Install backend dependencies
-            #cd backend
-            #npm install --production
+            cd backend
+            npm install 
             
             # Restart backend service (adjust based on your process manager)
-            #pm2 restart nextsteps-backend || pm2 start src/server.js --name nextsteps-backend
+            pm2 restart nextstepsusmle
             
             # Install frontend dependencies and build
-            cd frontend
+            cd ../frontend
             npm install
             npm run build
             
             # Copy built files to web server directory (adjust path as needed)
-            # Example for nginx:
             sudo rm -rf /var/www/nscusmle/*
             sudo cp -r dist/* /var/www/nscusmle/
             
