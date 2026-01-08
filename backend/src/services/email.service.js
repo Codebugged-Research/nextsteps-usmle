@@ -161,7 +161,7 @@ export const sendCustomerConfirmation = async (paymentData) => {
                         <div class="info-box">
                             <h3 style="margin-top: 0; color: #179BAE;">What's Next?</h3>
                             <ul style="line-height: 2;">
-                                <li>Our team will contact you within 24 hours</li>
+                                <li>Our team will contact you within 24 - 48 business hours</li>
                                 <li>You will receive your course access credentials</li>
                                 <li>Check your email for enrollment details</li>
                             </ul>
@@ -169,7 +169,7 @@ export const sendCustomerConfirmation = async (paymentData) => {
 
                         <p><strong>Need Help?</strong><br>
                         If you have any questions, please contact us at:<br>
-                        📧 <a href="mailto:career@nextstepsusmle.com">career@nextstepsusmle.com</a><br>
+                        📧 <a href="mailto:support@nextstepsusmle.com">support@nextstepsusmle.com</a><br>
                         📞 +1 561-599-7669</p>
 
                         <div style="text-align: center; margin-top: 30px;">
