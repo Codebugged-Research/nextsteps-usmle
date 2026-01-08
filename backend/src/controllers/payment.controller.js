@@ -1,5 +1,4 @@
 import { createCheckoutSession } from '../services/stripe.service.js';
-import { sendPaymentNotification, sendCustomerConfirmation } from '../services/email.service.js';
 
 export const checkout = async (req, res, next) => {
     try {
@@ -24,25 +23,7 @@ export const checkout = async (req, res, next) => {
             metadata
         );
 
-        // Send email notifications (don't wait for them to complete)
-        const emailData = {
-            amount: parseFloat(amount),
-            currency: currency.toLowerCase(),
-            email,
-            metadata,
-            sessionId: session.id
-        };
-
-        // Send notification to admin
-        sendPaymentNotification(emailData).catch(err => {
-            console.error('Failed to send payment notification:', err);
-        });
-
-        // Send confirmation to customer
-        sendCustomerConfirmation(emailData).catch(err => {
-            console.error('Failed to send customer confirmation:', err);
-        });
-
+        // Don't send emails here - wait for webhook confirmation from Stripe
         res.status(200).json({
             success: true,
             sessionId: session.id,
