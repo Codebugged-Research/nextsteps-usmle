@@ -169,8 +169,8 @@ export const sendCustomerConfirmation = async (paymentData) => {
 
                         <p><strong>Need Help?</strong><br>
                         If you have any questions, please contact us at:<br>
-                        📧 <a href="mailto:careers@nextstepscareer.com">careers@nextstepscareer.com</a><br>
-                        📞 +1 214 306 6111</p>
+                        📧 <a href="mailto:career@nextstepsusmle.com">career@nextstepsusmle.com</a><br>
+                        📞 +1 561-599-7669</p>
 
                         <div style="text-align: center; margin-top: 30px;">
                             <a href="https://nextstepsusmle.com" class="button">Visit Our Website</a>

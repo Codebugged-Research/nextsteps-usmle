@@ -23,7 +23,6 @@ export const checkout = async (req, res, next) => {
             metadata
         );
 
-        // Don't send emails here - wait for webhook confirmation from Stripe
         res.status(200).json({
             success: true,
             sessionId: session.id,

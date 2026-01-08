@@ -3,10 +3,6 @@ import { sendPaymentNotification, sendCustomerConfirmation } from '../services/e
 
 const stripe = new Stripe(process.env.STRIPE_TEST_KEY);
 
-/**
- * Handle Stripe webhook events
- * This endpoint receives notifications from Stripe when events occur
- */
 export const handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -31,7 +27,7 @@ export const handleWebhook = async (req, res, next) => {
 
                 // Prepare email data
                 const emailData = {
-                    amount: session.amount_total / 100, // Convert from cents to dollars
+                    amount: session.amount_total / 100,
                     currency: session.currency,
                     email: session.customer_details?.email || session.customer_email,
                     metadata: session.metadata,
