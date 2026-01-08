@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import routes from './routes/index.js';
+import { handleWebhook } from './controllers/webhook.controller.js';
 import { errorHandler, notFound } from './middlewares/error.middleware.js';
 
 const app = express();
@@ -11,10 +12,7 @@ app.use(cors({
 }));
 
 // Stripe webhook needs raw body - must be before express.json()
-app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), (req, res, next) => {
-    // This will be handled by the webhook controller
-    next();
-});
+app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), handleWebhook);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
