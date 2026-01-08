@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { sendPaymentNotification } from '../services/email.service.js';
+import { sendPaymentNotification, sendCustomerConfirmation } from '../services/email.service.js';
 
 const stripe = new Stripe(process.env.STRIPE_TEST_KEY);
 
@@ -29,7 +29,7 @@ export const handleWebhook = async (req, res, next) => {
 
                 console.log('Payment successful for session:', session.id);
 
-                // Send notification email to admin
+                // Prepare email data
                 const emailData = {
                     amount: session.amount_total / 100, // Convert from cents to dollars
                     currency: session.currency,
@@ -38,8 +38,13 @@ export const handleWebhook = async (req, res, next) => {
                     sessionId: session.id
                 };
 
+                // Send notification email to admin
                 await sendPaymentNotification(emailData);
-                console.log('Payment notification email sent successfully');
+                console.log('Payment notification email sent to admin');
+
+                // Send confirmation email to customer
+                await sendCustomerConfirmation(emailData);
+                console.log('Payment confirmation email sent to customer:', emailData.email);
                 break;
 
             case 'payment_intent.succeeded':

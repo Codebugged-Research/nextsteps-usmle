@@ -11,7 +11,6 @@ app.use(cors({
     credentials: true,
 }));
 
-// Stripe webhook needs raw body - must be before express.json()
 app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), handleWebhook);
 
 app.use(express.json());
