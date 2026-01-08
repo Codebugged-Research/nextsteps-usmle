@@ -170,7 +170,6 @@ export const sendCustomerConfirmation = async (paymentData) => {
                         <p><strong>Need Help?</strong><br>
                         If you have any questions, please contact us at:<br>
                         📧 <a href="mailto:support@nextstepsusmle.com">support@nextstepsusmle.com</a><br>
-                        📞 +1 561-599-7669</p>
 
                         <div style="text-align: center; margin-top: 30px;">
                             <a href="https://nextstepsusmle.com" class="button">Visit Our Website</a>
