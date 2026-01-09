@@ -36,7 +36,7 @@ const HeroSection = () => {
             <a href="https://app.nextstepscareer.com/login" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="h-14 px-8 gap-2 bg-[#179BAE] hover:bg-[#179BAE]/90 text-white shadow-soft hover:shadow-hover border-none">
                 <GraduationCap className="w-5 h-5" />
-                Step 1/Step 2 Portal
+                Step 1/Step 2 CK Portal
               </Button>
             </a>
             <a href="https://cv.nextstepsusmle.com/" target="_blank" rel="noopener noreferrer">

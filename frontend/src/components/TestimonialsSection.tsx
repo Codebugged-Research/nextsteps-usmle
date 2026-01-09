@@ -6,28 +6,28 @@ import { Button } from "@/components/ui/button";
 const videoTestimonials = [
   {
     title: "Student Success Story 1",
-    embedId: "BJGA_phgISs",
-    si: "q_L93LNiTvW3-t4U"
+    embedId: "qfVqppnU7pU",
+    si: "y0lw57q8xtGMoOhe"
   },
   {
     title: "Student Success Story 2",
-    embedId: "6gA38wtatrw",
-    si: "0y2WvyLwgcPqFlnj"
+    embedId: "lOtVLm_sEZc",
+    si: "7nY58EA27CCubCSM"
   },
   {
     title: "Student Success Story 3",
-    embedId: "tCCXM9AzQ3k",
-    si: "s8KakjlC93KfwVKN"
+    embedId: "IW1wsk3Wd4E",
+    si: "NxVx4cr5w_RTpCkU"
   },
   {
     title: "Student Success Story 4",
-    embedId: "9st_BQhTgcc",
-    si: "dVhv5KTTF73L_yPw"
+    embedId: "guFNeraUbTU",
+    si: "FlUKdRCxGzTdXynC"
   },
   {
     title: "Student Success Story 5",
-    embedId: "QCrBPJzimVY",
-    si: "ckga-k2mJZJ1AKVv"
+    embedId: "JeaRKwM7KiY",
+    si: "ufYcib2ZrqESditJ"
   },
 ];
 
@@ -55,6 +55,42 @@ const writtenTestimonials = [
     institution: "West China School of Medicine, China",
     rating: 5,
     text: "They are very helpful for your USMLE preparations. The staff are very cooperative with all concerns you have and will help you to make the best decision."
+  },
+  {
+    name: "Plaksha Reddy",
+    institution: "Gomel State Medical University, Belarus",
+    rating: 4,
+    text: "Next steps has really efficient study plans and knowledgable mentors for guidance...."
+  },
+  {
+    name: "Raghu Kumar",
+    institution: "Kempegowda Institute of Medical Sciences, Bangalore",
+    rating: 5,
+    text: "Its an excellent platform, it keeps me on track of my step exam prep as well as cv building simultaneously."
+  },
+  {
+    name: "Quader Naseer",
+    institution: "Ayaan Institute of Medical Sciences, Hyderabad",
+    rating: 4,
+    text: "A great tool for those getting ready for the USMLE is Next Steps. The team is skilled and informed, and they offer thorough and efficient help throughout the entire procedure."
+  },
+  {
+    name: "Sanjay Keerthipati",
+    institution: "RVM Medical College, Mulugu",
+    rating: 5,
+    text: "Next Steps is a fantastic resource for those preparing for the USMLE exam. The staff is knowledgeable and experienced, and they support throughout the entire process."
+  },
+  {
+    name: "Bharath Korrapati",
+    institution: "SV Medical College, Tirupati",
+    rating: 5,
+    text: "Recommended for usmle aspirants who want to boost their CV. They help you to publish atleast 2 research articles and case presentations"
+  },
+  {
+    name: "Anjali Gorantla",
+    institution: "Guntur Medical College, AP",
+    rating: 5,
+    text: "I shadowed under Dr.Shazad at glen oaks Chicago, with next steps I had the best US CLINICAL experience. I had access to the inpatients and outpatients and I learned a lot under Dr. Shazad."
   }
 ];
 
@@ -117,9 +153,9 @@ const TestimonialsSection = () => {
             {videoTestimonials.map((video, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-[300px] md:w-[500px] snap-start group rounded-2xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-hover transition-all duration-300"
+                className="flex-shrink-0 w-[240px] md:w-[300px] snap-start group rounded-2xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-hover transition-all duration-300"
               >
-                <div className="aspect-video relative">
+                <div className="aspect-[9/16] relative bg-black">
                   <iframe
                     className="absolute inset-0 w-full h-full"
                     src={`https://www.youtube.com/embed/${video.embedId}?si=${video.si}`}
@@ -138,6 +174,20 @@ const TestimonialsSection = () => {
           <p className="text-xs text-muted-foreground mt-4 md:hidden text-center opacity-60">
             Swipe to see more stories
           </p>
+
+          {/* Watch More Button */}
+          <div className="flex justify-center mt-12">
+            <a
+              href="https://www.youtube.com/playlist?list=PLHsOObYl5mXeqPPBRjMnByWeGSRQTctNs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-full shadow-lg group transition-all">
+                Watch More Success Stories
+                <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* Written Testimonials - Horizontal Scroll with Buttons */}
@@ -168,15 +218,15 @@ const TestimonialsSection = () => {
 
           <div
             ref={textScrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 scrollbar-none scrollbar-hide snap-x"
+            className="flex gap-6 items-stretch overflow-x-auto pb-6 scrollbar-none scrollbar-hide snap-x"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {writtenTestimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="flex-shrink-0 w-[300px] md:w-[400px] snap-start bg-card border-border hover:shadow-card transition-all duration-300 rounded-2xl"
+                className="flex-shrink-0 w-[300px] md:w-[400px] snap-start bg-card border-border hover:shadow-card transition-all duration-300 rounded-2xl flex flex-col"
               >
-                <CardContent className="p-8">
+                <CardContent className="p-8 flex flex-col h-full">
                   {/* Stars */}
                   <div className="flex gap-1 mb-5">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -193,7 +243,7 @@ const TestimonialsSection = () => {
                   </p>
 
                   {/* Author */}
-                  <div className="border-t border-border pt-6 flex items-center gap-4">
+                  <div className="border-t border-border pt-6 flex items-center gap-4 mt-auto">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
                       {testimonial.name.charAt(0)}
                     </div>

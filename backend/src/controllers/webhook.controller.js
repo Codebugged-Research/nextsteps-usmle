@@ -16,16 +16,13 @@ export const handleWebhook = async (req, res, next) => {
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
-    // Handle the event
     try {
         switch (event.type) {
             case 'checkout.session.completed':
-                // Payment was successful
                 const session = event.data.object;
 
                 console.log('Payment successful for session:', session.id);
 
-                // Prepare email data
                 const emailData = {
                     amount: session.amount_total / 100,
                     currency: session.currency,
@@ -34,21 +31,17 @@ export const handleWebhook = async (req, res, next) => {
                     sessionId: session.id
                 };
 
-                // Send notification email to admin
                 await sendPaymentNotification(emailData);
                 console.log('Payment notification email sent to admin');
 
-                // Send confirmation email to customer
                 await sendCustomerConfirmation(emailData);
                 console.log('Payment confirmation email sent to customer:', emailData.email);
                 break;
 
             case 'payment_intent.succeeded':
-                console.log('PaymentIntent was successful!');
                 break;
 
             case 'payment_intent.payment_failed':
-                console.log('PaymentIntent failed');
                 break;
 
             default:

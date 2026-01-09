@@ -1,4 +1,4 @@
-import { Mail, Phone, Globe, Linkedin, Facebook, X, Instagram } from "lucide-react";
+import { Mail, Phone, Globe, Linkedin, Facebook, X, Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -45,12 +45,6 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />
-                <a href="https://www.nextstepsusmle.com" className="hover:text-primary transition-colors">
-                  www.nextstepsusmle.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary" />
                 <a href="mailto:admin@nextstepsusmle.com" className="hover:text-primary transition-colors">
                   admin@nextstepsusmle.com
@@ -61,30 +55,20 @@ const Footer = () => {
                 <div>
                   <p>HYD: +91 88850 14877</p>
                   <p>BLR: +91 90358 20146</p>
-                  <p>USA: +1 561-599-7669</p>
+                  <p>USA: <a href="https://wa.me/15615997669" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+1 561-599-7669</a></p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Social & Copyright */}
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-primary-foreground/60">
             © {new Date().getFullYear()} Next Steps USMLE. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="text-sm text-primary-foreground/60 font-medium">Follow us @nextstepsusmle</span>
+            <span className="text-sm text-primary-foreground/60 font-medium">Follow us</span>
             <div className="flex items-center gap-4">
-              <a
-                href="https://www.linkedin.com/company/next-steps-usmle/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label="Follow us on LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
               <a
                 href="https://www.facebook.com/nextstepsUSMLE/"
                 target="_blank"
@@ -95,15 +79,6 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://x.com/NextStepsUSMLE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label="Follow us on X"
-              >
-                <X className="w-5 h-5" />
-              </a>
-              <a
                 href="https://www.instagram.com/nextstepsusmle/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -111,6 +86,33 @@ const Footer = () => {
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/next-steps-usmle/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@nextstepsusmle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                aria-label="Follow us on YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href="https://x.com/NextStepsUSMLE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                aria-label="Follow us on X"
+              >
+                <X className="w-5 h-5" />
               </a>
             </div>
           </div>
